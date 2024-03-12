@@ -67,3 +67,5 @@ function BuscarEquipos(liga) {
             listaEquipos.textContent = 'Error al cargar los equipos. Por favor, inténtalo de nuevo más tarde.';
         });
 }
+
+BuscarLigas()
