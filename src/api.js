@@ -2,11 +2,7 @@ const API_URL = 'https://www.thesportsdb.com/api/v1/json/3/';
 
 function BuscarLigas(){
     let liga_url = 'all_leagues.php';
-    let params = new URLSearchParams({
-        // modifico los params
-
-    });
-    fetch(`${API_URL}${liga_url}?${params}`)
+    fetch(`${API_URL}${liga_url}`)
         .then(response => response.json())
         .then(data => {
             // actualizo los datos
@@ -71,6 +67,3 @@ function BuscarEquipos(liga) {
             listaEquipos.textContent = 'Error al cargar los equipos. Por favor, inténtalo de nuevo más tarde.';
         });
 }
-
-//BuscarEquipos();
-BuscarLigas();
