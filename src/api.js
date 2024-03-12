@@ -1,6 +1,7 @@
 const API_URL = 'https://www.thesportsdb.com/api/v1/json/3/';
 
 function BuscarLigas(){
+    
     let liga_url = 'all_leagues.php';
     fetch(`${API_URL}${liga_url}`)
         .then(response => response.json())
@@ -23,6 +24,8 @@ function BuscarLigas(){
                 };
                 listItem.appendChild(button);
                 listaLigas.appendChild(listItem); // Agregar el listItem a la lista
+                var titulo = document.getElementById("titulo");
+                titulo.innerHTML = "<h1>LISTADO DE EQUIPOS:</h1>";
             });
         })
         .catch(error => {
@@ -43,16 +46,8 @@ function BuscarEquipos(liga) {
             if (data && data.teams) { // Verificar si data.teams no es null
                 const equipos = data.teams;
                 const nombresEquipos = equipos.map(equipo => equipo.strTeam);
-                // Seleccionar el elemento HTML donde se mostrarán los nombres de los equipos
-                const listaEquipos = document.getElementById('equipos');
-                // Limpiar cualquier contenido previo en la lista
-                listaEquipos.innerHTML = '';
-                // Iterar sobre los nombres de los equipos y agregarlos a la lista en el HTML
-                nombresEquipos.forEach(nombreEquipo => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = nombreEquipo;
-                    listaEquipos.appendChild(listItem);
-                });
+                // Redirigir a la página "equipos.html" y pasar los nombres de los equipos como parámetro de la URL
+                window.location.href = `equipos.html?equipos=${encodeURIComponent(JSON.stringify(nombresEquipos))}`;
             } else {
                 console.error('No se encontraron equipos.');
                 // Mostrar un mensaje en el HTML indicando que no se encontraron equipos
@@ -67,3 +62,6 @@ function BuscarEquipos(liga) {
             listaEquipos.textContent = 'Error al cargar los equipos. Por favor, inténtalo de nuevo más tarde.';
         });
 }
+
+
+BuscarLigas()

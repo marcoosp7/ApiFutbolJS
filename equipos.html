@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos</title>
+</head>
+<body>
+    <h1>Listado de Equipos</h1>
+    <ul id="equipos-list"></ul>
+    <button onclick="history.go(-1)">Regresar</button>
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+        // Obtener el valor del parámetro "equipos"
+        const equiposJSON = params.get('equipos');
+        // Convertir el JSON de nombres de equipos de nuevo a un array
+        const nombresEquipos = JSON.parse(decodeURIComponent(equiposJSON));
+
+        // Seleccionar el elemento UL donde se mostrarán los equipos
+        const equiposList = document.getElementById('equipos-list');
+
+        // Iterar sobre los nombres de los equipos y agregarlos como elementos de lista en el UL
+        nombresEquipos.forEach(nombreEquipo => {
+            const listItem = document.createElement('li');
+            listItem.textContent = nombreEquipo;
+            equiposList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
