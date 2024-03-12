@@ -57,6 +57,8 @@ function BuscarJugador() {
                 let table = '<table border="1">';
                 table += '<tr><th>Imagen</th><th>Nombre</th><th>Equipo</th><th>Nacionalidad</th><th>Nacimiento</th><th>Altura</th><th>Peso</th><th>Dorsal</th></tr>';
                 table += '<tr>';
+                table += '</tr>';
+                table += '<tr>';
                 table += `<td><img src="${jugadorInfo.strCutout}" alt="${jugadorInfo.strPlayer}" width="100"></td>`;
                 table += `<td>${jugadorInfo.strPlayer}</td>`;
                 table += `<td>${jugadorInfo.strTeam}</td>`;
@@ -82,4 +84,31 @@ function BuscarJugador() {
         });
 }
 
-BuscarEquipos()
+BuscarEquipos();
+
+function BuscarLigas(){
+    let liga_url = 'all_leagues.php';
+    let params = new URLSearchParams({
+        // modifico los params
+
+    });
+    fetch(`${API_URL}${liga_url}?${params}`)
+        .then(response => response.json())
+        .then(data => {
+            // actualizo los datos
+            const ligas = data.leagues;
+            const nombreLigas = ligas.map(equipo => equipo.strLeague);
+            // Seleccionar el elemento HTML donde se mostrarán los nombres de los equipos
+            const listaLigas = document.getElementById('ligas');
+            // Limpiar cualquier contenido previo en la lista
+            listaLigas.innerHTML = '';
+            // Iterar sobre los nombres de los equipos y agregarlos a la lista en el HTML
+            nombreLigas.forEach(nombreLigas => {
+                const listItem = document.createElement('li');
+                listItem.textContent = nombreLigas;
+                listaLigas.appendChild(listItem);
+            });
+        })
+}
+
+BuscarLigas();
