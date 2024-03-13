@@ -4,11 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Equipos</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        
+        .regresar {
+            background-color: #dc3545; 
+        }
+        .regresar:hover {
+            background-color: #c82333; 
+        }
+    </style>
 </head>
 <body>
     <h1>Listado de Equipos</h1>
     <ul id="equipos-list"></ul>
-    <button onclick="history.go(-1)">Regresar</button>
+    <!-- Agrega la clase "regresar" al botón -->
+    <button class="regresar" onclick="history.go(-1)">Regresar</button>
     <script>
         // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
